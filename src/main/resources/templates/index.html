@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel ="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Mobile Phone Start! </title>
+</head>
+<body>
+<!--dajemy formularz dotyczacy user metoda post, tylko do odczytu dane id, do wpisywania dane input, przycisk-submit-->
+<form th:action="@{/addNewPhone}" th:object="${device}" method="post" id="userForm">
+    <div>
+         <span th:if="${device.idDevice !=null}"><input type="text" th:field="${device.idDevice}" readonly></span>
+
+        <label th:text="Model"></label><br/>
+        <input type="text" placeholder="Model" th:field="${device.model}"/>
+
+        <br>
+
+        <label th:text="Colour"></label><br/>
+        <input type="text" placeholder="Colour" th:field="${device.colour}"/>
+
+        <br>
+
+        <label th:text="Weight"></label><br/>
+        <input type="number" placeholder="Weight" th:field="${device.weight}"/>
+
+        <br>
+    </div>
+    <input type="submit" th:value="${device.idDevice!=null}?'edit device':'add device'"/>
+
+</form>
+
+<br>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Model</th>
+        <th>Colour</th>
+        <th>Weight</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="device:${devices}">
+        <td th:text="${device.model}"></td>
+        <td th:text="${device.colour}"></td>
+        <td th:text="${device.weight}"></td>
+
+        <td><a th:href="@{'/editPhone/'+${device.idDevice}}">Edit</a><a th:href="@{'/deletePhone/'+${device.idDevice}}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
