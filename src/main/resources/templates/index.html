@@ -2,36 +2,48 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel ="stylesheet" href="style.css" type="text/css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Mobile Phone Start! </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<body>
+<body style="background: snow" >
+<br>
+<div style="background: lightskyblue;width: 1000px; margin-left: auto; margin-right: auto;padding: 20px; height: 300px ">
 <!--dajemy formularz dotyczacy user metoda post, tylko do odczytu dane id, do wpisywania dane input, przycisk-submit-->
-<form th:action="@{/addNewPhone}" th:object="${device}" method="post" id="userForm">
-    <div>
+    <div style="float: right; padding: 20px; width: 660px; height: 300px;  font-size: 50px; text-align: left; ">
+        Mobile Device CRUD APP
+        <br>
+        <div style="font-weight: lighter">
+        Created by Skaler12
+        </div>
+    </div>
+    <div style="float: left; padding: 20px; width: 260px; height: 300px;">
+     <form th:action="@{/addNewPhone}" th:object="${device}" method="post" id="userForm">
+
          <span th:if="${device.idDevice !=null}"><input type="text" th:field="${device.idDevice}" readonly></span>
 
-        <label th:text="Model"></label><br/>
-        <input type="text" placeholder="Model" th:field="${device.model}"/>
+        <label style="font-weight: bold; color: black; font-size: large" th:text="Model"></label><br/>
+        <input   type="text" placeholder="Model" th:field="${device.model}"/>
 
         <br>
 
-        <label th:text="Colour"></label><br/>
+        <label style="font-weight: bold; color: black; font-size:large" th:text="Colour"></label><br/>
         <input type="text" placeholder="Colour" th:field="${device.colour}"/>
 
         <br>
 
-        <label th:text="Weight"></label><br/>
+        <label style="font-weight: bold; color: black; font-size: large" th:text="Weight"></label><br/>
         <input type="number" placeholder="Weight" th:field="${device.weight}"/>
 
         <br>
+        <br>
+
+        <input type="submit" class="btn btn-primary" th:value="${device.idDevice!=null}?'Edit Device':'Add Device'"/>
+
+      </form>
     </div>
-    <input type="submit" th:value="${device.idDevice!=null}?'edit device':'add device'"/>
-
-</form>
-
-<br>
+</div>
+  <br>
+<div style="background: lightskyblue; width: 1000px; margin-left: auto; margin-right: auto;padding: 20px ">
 <table class="table">
     <thead>
     <tr>
@@ -46,10 +58,14 @@
         <td th:text="${device.model}"></td>
         <td th:text="${device.colour}"></td>
         <td th:text="${device.weight}"></td>
-
-        <td><a th:href="@{'/editPhone/'+${device.idDevice}}">Edit</a><a th:href="@{'/deletePhone/'+${device.idDevice}}">Delete</a></td>
+        <div style="width: 100px; margin-right: 50px; margin-right: 20px; display: block; margin: auto">
+        <td><a class="btn btn-warning" th:href="@{'/editPhone/'+${device.idDevice}} " role="button" style="color: white">Edit</a>
+            <span>     </span>
+            <a class="btn btn-danger" th:href="@{'/deletePhone/'+${device.idDevice}}">Delete</a></td>
+        </div>
     </tr>
     </tbody>
 </table>
+</div>
 </body>
 </html>
