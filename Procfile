@@ -1,1 +1,2 @@
-web: java -war run/mobile-phone-crud-app-1.0.0.war
+
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* HelloWorld
