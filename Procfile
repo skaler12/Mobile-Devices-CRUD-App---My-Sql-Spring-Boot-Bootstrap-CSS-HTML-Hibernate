@@ -1,2 +1,3 @@
 
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* MobilePhoneCrudAppApplication.java
+
+web: java -Dserver.port=$PORT -jar target/MobilePhoneCrudAppApplication-0.0.1-SNAPSHOT.jar
