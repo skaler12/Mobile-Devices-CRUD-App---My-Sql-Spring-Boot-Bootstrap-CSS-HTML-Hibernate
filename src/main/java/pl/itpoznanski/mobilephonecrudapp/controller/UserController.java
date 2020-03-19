@@ -24,7 +24,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/")
+    @GetMapping()
     public String index(Model model) {
         model.addAttribute("device", new Device());
         model.addAttribute("devices", deviceService.findAll());
